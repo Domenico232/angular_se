@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-prova',
@@ -7,8 +7,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProvaComponent implements OnInit{
 
-    constructor() {}
+cani = [{
+  nome : "jesus",
+  razza : "doggo",
+  description : "broken doggo"
+},
+{
+  nome : "Volcarona",
+  razza : "BigDoggo",
+  description : "gigadrain, Lanciafiamme"
+},{
+  nome : "Raichu",
+  razza : "Elettro",
+  description : "Fulmine, Codacciaio"
+},{
+  nome : "Gyrados",
+  razza : "Acqua/Volante",
+  description : "Surf, Acquagetto, Danzaspada"
+}]
+immagine = "https://lorempokemon.fakerapi.it/pokemon/200";
+immagineswap1 = "https://lorempokemon.fakerapi.it/pokemon/200";
+immagineSwap= "https://lorempokemon.fakerapi.it/pokemon";
+
+isDisabled=true
+
+change = () =>{
+  this.isDisabled = !this.isDisabled
+}
+ 
+    constructor() {
+      console.log("Constructor")
+
+    }
+
   ngOnInit(): void {
-      
+    console.log("ngOnInit")
+    setInterval(()=>{
+    this.isDisabled = !this.isDisabled
+
+      if (this.isDisabled) {
+        this.immagine = this.immagineSwap
+
+      }else{
+
+        this.immagine = this.immagineswap1
+      }
+    }, 2000)
   }
 }

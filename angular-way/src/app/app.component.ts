@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-way';
+
+  onInput = (e : Event) =>{
+    console.log((<HTMLInputElement>e.target).value)
+  }
+
 }
