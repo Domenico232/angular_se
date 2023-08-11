@@ -1,8 +1,30 @@
-
-<form class="example-form">
-    <mat-form-field class="example-full-width">
+    <!--<mat-form-field class="example-full-width">
       <mat-label>Favorite food</mat-label>
-      <input matInput placeholder="Ex. Pizza" (input)="onInput($event)">
+      <input matInput placeholder="Ex. Pizza" [(ngModel)]="title">
     </mat-form-field>
-    <button mat-raised-button color="primary">Primary</button>
-  </form>
+    <button mat-raised-button color="primary" (click)="onClick($event)">Primary</button>
+  <div>{{title}}</div>
+
+  <p *ngIf="isVisible"> !condizione vera</p>
+  <p *ngIf="!isVisible"> non visibile</p>
+  <p *ngIf="isVisible; else bloccoElse"> ora sono l'if verificato</p>
+    <ng-template #bloccoElse><p>ora sono l'else</p></ng-template>>-->
+
+    <mat-card class="example-card" *ngFor="let pokemon of arrayPokemon">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{pokemon.nome.toUpperCase()}}</mat-card-title>
+          <mat-card-subtitle>{{pokemon.tipo}}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <img mat-card-image [src]="pokemon.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{pokemon.mosse}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">LIKE</button>
+          <button mat-button color="warn">SHARE</button>
+        </mat-card-actions>
+      </mat-card>
