@@ -1,29 +1,25 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { Component,EventEmitter,Input,OnChanges,OnInit, Output, SimpleChanges } from '@angular/core';
+
+interface Pokemon{
+      nome: String
+      tipo: String
+      mosse: Array<string>
+      image: String
+      disponibile:Boolean
+}
 
 @Component({
   selector: 'app-prova',
   templateUrl: './prova.component.html',
   styleUrls: ['./prova.component.css']
 })
-export class ProvaComponent implements OnInit{
-
+export class ProvaComponent implements OnInit, OnChanges{
+@Input() data:Array<Pokemon> = [];
+@Output() datiInviatiParent = new EventEmitter<string>()
 cani = [{
   nome : "jesus",
   razza : "doggo",
   description : "broken doggo"
-},
-{
-  nome : "Volcarona",
-  razza : "BigDoggo",
-  description : "gigadrain, Lanciafiamme"
-},{
-  nome : "Raichu",
-  razza : "Elettro",
-  description : "Fulmine, Codacciaio"
-},{
-  nome : "Gyrados",
-  razza : "Acqua/Volante",
-  description : "Surf, Acquagetto, Danzaspada"
 }]
 immagine = "https://lorempokemon.fakerapi.it/pokemon/200";
 immagineswap1 = "https://lorempokemon.fakerapi.it/pokemon/200";
@@ -39,9 +35,12 @@ change = () =>{
       console.log("Constructor")
 
     }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+  }
 
   ngOnInit(): void {
-    console.log("ngOnInit")
+    console.log(this.data)
     setInterval(()=>{
     this.isDisabled = !this.isDisabled
 
@@ -54,4 +53,8 @@ change = () =>{
       }
     }, 2000)
   }
+mandaDati(){
+  this.datiInviatiParent.emit(this.cani[0].nome)
+}
+
 }
