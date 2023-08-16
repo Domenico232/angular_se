@@ -9,7 +9,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class AppComponent {
 
-  
+  //si genedare onInit e si puo utilizzare AfterViewInit
   @ViewChild("inputSaluti") valoreInput! : ElementRef
   
   colore = "purple"
